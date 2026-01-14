@@ -3,8 +3,9 @@ package io.start;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
-public class StreamStartMain1 {
+public class StreamStartMain4 {
 
     public static void main(String[] args) throws IOException {
         FileOutputStream fos = new FileOutputStream("temp/hello.dat");
@@ -15,11 +16,9 @@ public class StreamStartMain1 {
         fos.close();
 
         FileInputStream fis = new FileInputStream("temp/hello.dat");
-        System.out.println(fis.read());
-        System.out.println(fis.read());
-        System.out.println(fis.read());
-        System.out.println(fis.read());
-        System.out.println(fis.read());
+        byte[] bytes = fis.readAllBytes();
+        System.out.println(Arrays.toString(bytes));
+
         fis.close();
     }
 }
