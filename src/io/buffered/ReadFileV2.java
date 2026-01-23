@@ -1,21 +1,24 @@
 package io.buffered;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import static io.buffered.BufferedConst.BUFFER_SIZE;
 import static io.buffered.BufferedConst.FILE_NAME;
 
-public class ReadFileV1 {
+public class ReadFileV2 {
 
     public static void main(String[] args) throws IOException {
         FileInputStream fis = new FileInputStream(FILE_NAME);
         long start = System.currentTimeMillis();
 
+        byte[] buffer = new byte[BUFFER_SIZE];
+
         int data;
         int fileSize = 0;
-        while ((data = fis.read()) != -1) {
-            fileSize++;
+        int size;
+        while ((size = fis.read(buffer)) != -1) {
+            fileSize += size;
         }
 
         fis.close();
@@ -24,5 +27,6 @@ public class ReadFileV1 {
         System.out.println("File name: " + FILE_NAME);
         System.out.println("File size: " + fileSize);
         System.out.println("Time taken: " + (end - start) + "ms");
+
     }
 }
